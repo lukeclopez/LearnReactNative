@@ -30,8 +30,8 @@ export default function App() {
       </View>
       <View>
         {gems.map(g => (
-          <View style={styles.gem}>
-            <Text key={g}>{g}</Text>
+          <View key={g} style={styles.gem}>
+            <Text>{g}</Text>
           </View>
         ))}
       </View>
