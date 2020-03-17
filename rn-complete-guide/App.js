@@ -23,10 +23,12 @@ export default function App() {
     setGems(curGems => [...curGems.filter(g => g.id != gemId)]);
   };
 
+  const closeInputModal = () => setIsInputModalVisible(false);
+
   return (
     <View style={styles.screen}>
       <Button title="Add Gem" onPress={() => setIsInputModalVisible(true)} />
-      <GemInput visible={isInputModalVisible} onAddGem={handleAddGem} />
+      <GemInput visible={isInputModalVisible} onAddGem={handleAddGem} onCancel={closeInputModal} />
       <FlatList
         data={gems}
         renderItem={gem => <GemItem data={gem} onDelete={handleDelete} />}
