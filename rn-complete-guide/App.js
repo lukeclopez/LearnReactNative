@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  ScrollView,
+  FlatList
+} from "react-native";
 
 export default function App() {
   const [enteredGem, setEnteredGem] = useState("");
@@ -13,7 +21,10 @@ export default function App() {
     // The function that returns an array
     // guarantees that the latest state
     // will be included.
-    setGems(curGems => [...curGems, enteredGem]);
+    setGems(curGems => [
+      ...curGems,
+      { key: Math.random().toString(), value: enteredGem }
+    ]);
     setEnteredGem("");
   };
 
@@ -28,13 +39,14 @@ export default function App() {
         />
         <Button title="Add" onPress={handlePress} />
       </View>
-      <View>
-        {gems.map(g => (
-          <View key={g} style={styles.gem}>
-            <Text>{g}</Text>
+      <FlatList
+        data={gems}
+        renderItem={gemData => (
+          <View style={styles.gem}>
+            <Text>{gemData.item.value}</Text>
           </View>
-        ))}
-      </View>
+        )}
+      />
     </View>
   );
 }
