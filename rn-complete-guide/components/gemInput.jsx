@@ -6,6 +6,9 @@ const GemInput = ({ visible, onAddGem, onCancel }) => {
   const [enteredGem, setEnteredGem] = useState("");
 
   const addGem = () => {
+    if (enteredGem.length < 1) {
+      return;
+    }
     onAddGem(enteredGem);
     setEnteredGem("");
   };
