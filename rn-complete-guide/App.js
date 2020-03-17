@@ -1,13 +1,7 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Button,
-  ScrollView,
-  FlatList
-} from "react-native";
+import { StyleSheet, View, TextInput, Button, FlatList } from "react-native";
+
+import GemItem from "./components/gemItem";
 
 export default function App() {
   const [enteredGem, setEnteredGem] = useState("");
@@ -39,14 +33,7 @@ export default function App() {
         />
         <Button title="Add" onPress={handlePress} />
       </View>
-      <FlatList
-        data={gems}
-        renderItem={gemData => (
-          <View style={styles.gem}>
-            <Text>{gemData.item.value}</Text>
-          </View>
-        )}
-      />
+      <FlatList data={gems} renderItem={gem => <GemItem data={gem} />} />
     </View>
   );
 }
@@ -63,12 +50,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderBottomColor: "black",
     padding: 10
-  },
-  gem: {
-    padding: 10,
-    marginVertical: 10,
-    backgroundColor: "gray",
-    borderColor: "black",
-    borderWidth: 1
   }
 });
