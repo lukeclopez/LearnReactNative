@@ -1,11 +1,14 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-const GemItem = ({ data }) => {
+const GemItem = ({ data, onDelete }) => {
+  const deleteGem = () => onDelete(data.item.id);
   return (
-    <View style={styles.gem}>
-      <Text>{data.item.value}</Text>
-    </View>
+    <TouchableOpacity activeOpacity={0.8} onPress={deleteGem}>
+      <View style={styles.gem}>
+        <Text>{data.item.value}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 

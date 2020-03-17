@@ -13,14 +13,21 @@ export default function App() {
     // will be included.
     setGems(curGems => [
       ...curGems,
-      { key: Math.random().toString(), value: gem }
+      { id: Math.random().toString(), value: gem }
     ]);
+  };
+
+  const handleDelete = gemId => {
+    setGems(curGems => [...curGems.filter(g => g.id != gemId)]);
   };
 
   return (
     <View style={styles.screen}>
       <GemInput onAddGem={handleAddGem} />
-      <FlatList data={gems} renderItem={gem => <GemItem data={gem} />} />
+      <FlatList
+        data={gems}
+        renderItem={gem => <GemItem data={gem} onDelete={handleDelete} />}
+      />
     </View>
   );
 }
