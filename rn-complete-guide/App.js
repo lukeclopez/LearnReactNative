@@ -6,6 +6,7 @@ import GemInput from "./components/gemInput";
 
 export default function App() {
   const [gems, setGems] = useState([]);
+  const [isInputModalVisible, setIsInputModalVisible] = useState(false);
 
   const handleAddGem = gem => {
     // The function that returns an array
@@ -15,6 +16,7 @@ export default function App() {
       ...curGems,
       { id: Math.random().toString(), value: gem }
     ]);
+    setIsInputModalVisible(false);
   };
 
   const handleDelete = gemId => {
@@ -23,7 +25,8 @@ export default function App() {
 
   return (
     <View style={styles.screen}>
-      <GemInput onAddGem={handleAddGem} />
+      <Button title="Add Gem" onPress={() => setIsInputModalVisible(true)} />
+      <GemInput visible={isInputModalVisible} onAddGem={handleAddGem} />
       <FlatList
         data={gems}
         renderItem={gem => <GemItem data={gem} onDelete={handleDelete} />}
