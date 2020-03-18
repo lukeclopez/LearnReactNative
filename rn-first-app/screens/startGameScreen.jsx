@@ -9,8 +9,12 @@ const StartGameScreen = () => {
       <Text style={styles.title}>You caught a dumb fish!</Text>
       <Card style={styles.buttonsCard}>
         <View style={styles.buttonContainer}>
-          <Button title="Fish Again" />
-          <Button title="End Turn" />
+          <View style={styles.buttons}>
+            <Button title="Fish Again" />
+          </View>
+          <View style={styles.buttons}>
+            <Button title="End Turn" />
+          </View>
         </View>
       </Card>
     </View>
@@ -29,6 +33,9 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: "row",
     alignItems: "center"
+  },
+  buttons: {
+    marginHorizontal: 20
   }
 });
 
