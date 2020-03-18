@@ -1,16 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 
 import Card from "./../components/card";
+import fish from "../constants/fish";
 
 const StartGameScreen = () => {
+  const [message, setMessage] = useState("Press a button to begin!");
+  const [points, setPoints] = useState([0, 0]);
+  const [player1Turn, setPlayer1Turn] = useState(-1);
+
+  const onFish = () => {
+    const caughtFish = fish[Math.floor(Math.random() * fish.length)];
+    setMessage("You caught a(n) " + caughtFish.name);
+    setPlayer1Turn(player1Turn < 0 ? false : !player1Turn);
+  };
+
   return (
     <View style={styles.screen}>
-      <Text style={styles.title}>You caught a dumb fish!</Text>
+      <Text style={styles.title}>{message}</Text>
       <Card style={styles.buttonsCard}>
         <View style={styles.buttonContainer}>
           <View style={styles.buttons}>
-            <Button title="Fish Again" />
+            <Button
+              title={"Fish" + (player1Turn > -1 ? " Again" : "")}
+              onPress={onFish}
+            />
           </View>
           <View style={styles.buttons}>
             <Button title="End Turn" />
