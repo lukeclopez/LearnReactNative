@@ -6,8 +6,8 @@ import fish from "../constants/fish";
 
 const StartGameScreen = () => {
   const [message, setMessage] = useState("Press a button to begin!");
-  const [points, setPoints] = useState([0, 0]);
-  const [player1Turn, setPlayer1Turn] = useState(-1);
+  const [score, setScore] = useState([0, 0]);
+  const [turn, setTurn] = useState(0);
 
   const aOrAn = word => {
     const isFirstLetterVowel = /[aeiou]/i.test(word[0]);
@@ -16,9 +16,12 @@ const StartGameScreen = () => {
 
   const onFish = () => {
     const caughtFish = fish[Math.floor(Math.random() * fish.length)];
-    const { name } = caughtFish;
+    const { name, points } = caughtFish;
     setMessage("You caught" + aOrAn(name));
-    setPlayer1Turn(player1Turn < 0 ? false : !player1Turn);
+    const newScore = [...score];
+    newScore[turn] += points;
+    setScore(newScore);
+    setTurn(turn === 0 ? 1 : 0);
   };
 
   return (
@@ -27,16 +30,17 @@ const StartGameScreen = () => {
       <Card style={styles.buttonsCard}>
         <View style={styles.buttonContainer}>
           <View style={styles.buttons}>
-            <Button
-              title={"Fish" + (player1Turn > -1 ? " Again" : "")}
-              onPress={onFish}
-            />
+            <Button title="Fish" onPress={onFish} />
           </View>
           <View style={styles.buttons}>
             <Button title="End Turn" />
           </View>
         </View>
       </Card>
+      <View>
+        <Text>Player 1: {score[0]}</Text>
+        <Text>Player 2: {score[1]}</Text>
+      </View>
     </View>
   );
 };
