@@ -9,9 +9,15 @@ const StartGameScreen = () => {
   const [points, setPoints] = useState([0, 0]);
   const [player1Turn, setPlayer1Turn] = useState(-1);
 
+  const aOrAn = word => {
+    const isFirstLetterVowel = /[aeiou]/i.test(word[0]);
+    return (isFirstLetterVowel ? " an " : " a ") + word;
+  };
+
   const onFish = () => {
     const caughtFish = fish[Math.floor(Math.random() * fish.length)];
-    setMessage("You caught a(n) " + caughtFish.name);
+    const { name } = caughtFish;
+    setMessage("You caught" + aOrAn(name));
     setPlayer1Turn(player1Turn < 0 ? false : !player1Turn);
   };
 
