@@ -6,13 +6,23 @@ import {
   Button,
   Modal,
   TextInput,
-  Keyboard
+  Keyboard,
+  Alert
 } from "react-native";
 
 const MainMenuScreen = props => {
   const [isSetupModalVisible, setIsSetupModalVisible] = useState(false);
   const onPlay = () => {
-    setIsSetupModalVisible(true);
+    Alert.alert("Hi", "What will you name your players?", [
+      {
+        text: "Go Back",
+        style: "cancel"
+      },
+      {
+        text: "Yeah!",
+        onPress: () => setIsSetupModalVisible(true)
+      }
+    ]);
   };
 
   return (
