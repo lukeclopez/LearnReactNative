@@ -21,9 +21,8 @@ const StartGameScreen = () => {
     const caughtFish = fish[Math.floor(Math.random() * fish.length)];
     const { name, points } = caughtFish;
     setMessage("You caught" + aOrAn(name));
-    if (isBadFish(caughtFish)) {
-      setPointsThisRound(0);
-      onEndTurn();
+    if (caughtFish.isBadFish) {
+      onEndTurn(false);
       return;
     }
     setPointsThisRound(pointsThisRound + points);
