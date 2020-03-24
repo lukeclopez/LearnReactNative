@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 
 import Card from "./../components/card";
+import BodyText from "./../components/bodyText";
 import fish from "../constants/fish";
 
 const StartGameScreen = ({ playerNames }) => {
@@ -14,8 +15,6 @@ const StartGameScreen = ({ playerNames }) => {
     const isFirstLetterVowel = /[aeiou]/i.test(word[0]);
     return (isFirstLetterVowel ? " an " : " a ") + word;
   };
-
-  const isBadFish = fish => fish.points < 0;
 
   const onFish = () => {
     const caughtFish = fish[Math.floor(Math.random() * fish.length)];
@@ -40,7 +39,7 @@ const StartGameScreen = ({ playerNames }) => {
 
   return (
     <View style={styles.screen}>
-      <Text style={styles.title}>{message}</Text>
+      <BodyText style={styles.title}>{message}</BodyText>
       <Card style={styles.buttonsCard}>
         <View style={styles.buttonContainer}>
           <View style={styles.buttons}>
