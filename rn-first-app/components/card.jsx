@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
     shadowColor: "black",
     shadowOpacity: 0.26,
     borderRadius: 6,
-    shadowRadius: 2
+    shadowRadius: 2,
+    padding: 20
   }
 });
 

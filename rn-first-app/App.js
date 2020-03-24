@@ -2,13 +2,20 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 
 import Header from "./components/header";
-import StartGameScreen from "./screens/startGameScreen";
+import MainMenuScreen from "./screens/mainMenuScreen";
 
 export default function App() {
+  const [activeScreen, setActiveScreen] = useState(0);
+
+  const renderActiveScreen = () => {
+    if (activeScreen) return activeScreen;
+    return <MainMenuScreen setActiveScreen={setActiveScreen} />;
+  };
+
   return (
     <View>
       <Header title="Hi" />
-      <StartGameScreen />
+      {renderActiveScreen()}
     </View>
   );
 }

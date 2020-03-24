@@ -10,6 +10,10 @@ import {
   Alert
 } from "react-native";
 
+import StartGameScreen from "./startGameScreen";
+
+import Card from "./../components/card";
+
 const MainMenuScreen = props => {
   const [isSetupModalVisible, setIsSetupModalVisible] = useState(false);
   const onPlay = () => {
@@ -31,20 +35,27 @@ const MainMenuScreen = props => {
       <Modal visible={isSetupModalVisible} animationType="slide">
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <View style={styles.setupMenu}>
-            <View style={styles.input}>
-              <TextInput
-                placeholder="Player 1 Name"
-                textAlign="center"
-                maxLength={10}
-              />
-            </View>
-            <View style={styles.buttonContainer}>
-              <Button
-                title="Back"
-                onPress={() => setIsSetupModalVisible(false)}
-              />
-              <Button title="Next" onPress={() => {}} />
-            </View>
+            <Card>
+              <View style={styles.input}>
+                <TextInput
+                  placeholder="Player 1 Name"
+                  textAlign="center"
+                  maxLength={10}
+                />
+              </View>
+              <View style={styles.buttonContainer}>
+                <Button
+                  title="Back"
+                  onPress={() => setIsSetupModalVisible(false)}
+                />
+                <Button
+                  title="Next"
+                  onPress={() =>
+                    props.setActiveScreen(<StartGameScreen {...props} />)
+                  }
+                />
+              </View>
+            </Card>
           </View>
         </TouchableWithoutFeedback>
       </Modal>
@@ -63,7 +74,7 @@ const styles = StyleSheet.create({
   input: {
     borderBottomColor: "black",
     borderBottomWidth: 1,
-    width: "60%"
+    margin: 10
   },
   buttonContainer: {
     width: "60%",
