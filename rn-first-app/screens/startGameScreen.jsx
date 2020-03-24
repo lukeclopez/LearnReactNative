@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import Card from "./../components/card";
 import fish from "../constants/fish";
 
-const StartGameScreen = () => {
+const StartGameScreen = ({ playerNames }) => {
   const [message, setMessage] = useState("Press a button to begin!");
   const [pointsThisRound, setPointsThisRound] = useState(0);
   const [score, setScore] = useState([0, 0]);
@@ -28,11 +28,13 @@ const StartGameScreen = () => {
     setPointsThisRound(pointsThisRound + points);
   };
 
-  const onEndTurn = () => {
-    const newScore = [...score];
-    newScore[turn] += pointsThisRound;
+  const onEndTurn = (addPoints = true) => {
+    if (addPoints) {
+      const newScore = [...score];
+      newScore[turn] += pointsThisRound;
+      setScore(newScore);
+    }
     setPointsThisRound(0);
-    setScore(newScore);
     setTurn(turn === 0 ? 1 : 0);
   };
 
@@ -51,8 +53,12 @@ const StartGameScreen = () => {
       </Card>
       <View>
         <Text>{pointsThisRound}</Text>
-        <Text>Player 1: {score[0]}</Text>
-        <Text>Player 2: {score[1]}</Text>
+        <Text>
+          {playerNames[0]}: {score[0]}
+        </Text>
+        <Text>
+          {playerNames[1]}: {score[1]}
+        </Text>
       </View>
     </View>
   );

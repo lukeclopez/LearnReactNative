@@ -16,6 +16,8 @@ import Card from "./../components/card";
 
 const MainMenuScreen = props => {
   const [isSetupModalVisible, setIsSetupModalVisible] = useState(false);
+  const [playerNames, setPlayerNames] = useState(["", ""]);
+
   const onPlay = () => {
     Alert.alert("Hi", "What will you name your players?", [
       {
@@ -29,6 +31,12 @@ const MainMenuScreen = props => {
     ]);
   };
 
+  const updatePlayerNames = (index, name) => {
+    const newPlayerNames = [...playerNames];
+    newPlayerNames[index] = name;
+    setPlayerNames(newPlayerNames);
+  };
+
   return (
     <View style={styles.screen}>
       <Button title="Play" onPress={onPlay} />
@@ -36,13 +44,19 @@ const MainMenuScreen = props => {
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <View style={styles.setupMenu}>
             <Card>
-              <View style={styles.input}>
-                <TextInput
-                  placeholder="Player 1 Name"
-                  textAlign="center"
-                  maxLength={10}
-                />
-              </View>
+              {playerNames.map((e, index) => (
+                <View key={index} style={styles.input}>
+                  <TextInput
+                    placeholder={
+                      "Enter Name for Player " + (index + 1).toString()
+                    }
+                    textAlign="center"
+                    maxLength={10}
+                    onChangeText={name => updatePlayerNames(index, name)}
+                    value={playerNames[index]}
+                  />
+                </View>
+              ))}
               <View style={styles.buttonContainer}>
                 <Button
                   title="Back"
@@ -51,7 +65,9 @@ const MainMenuScreen = props => {
                 <Button
                   title="Next"
                   onPress={() =>
-                    props.setActiveScreen(<StartGameScreen {...props} />)
+                    props.setActiveScreen(
+                      <StartGameScreen {...props} playerNames={playerNames} />
+                    )
                   }
                 />
               </View>
