@@ -12,6 +12,7 @@ import {
 
 import StartGameScreen from "./startGameScreen";
 
+import MyButton from "./../components/myButton";
 import Card from "./../components/card";
 
 const MainMenuScreen = props => {
@@ -39,7 +40,7 @@ const MainMenuScreen = props => {
 
   return (
     <View style={styles.screen}>
-      <Button title="Play" onPress={onPlay} />
+      <MyButton title="Play" onPress={onPlay} />
       <Modal visible={isSetupModalVisible} animationType="slide">
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <View style={styles.setupMenu}>
