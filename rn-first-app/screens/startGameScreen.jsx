@@ -60,7 +60,7 @@ const StartGameScreen = ({ playerNames }) => {
 
   return (
     <View style={styles.screen}>
-      <Image source={caughtFish.image} />
+      <Image source={caughtFish.image} style={styles.fishImage} />
       <Text style={defaultStyles.bold}>{message}</Text>
       <Card style={styles.buttonsCard}>
         <View style={styles.buttonContainer}>
@@ -94,6 +94,7 @@ const StartGameScreen = ({ playerNames }) => {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, padding: 10, alignItems: "center" },
+  fishImage: { width: 200, height: 200, resizeMode: "contain" },
   title: { fontSize: 20, marginVertical: 10 },
   buttonsCard: {
     justifyContent: "center",
