@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 
 import Card from "./../components/card";
-import BodyText from "./../components/bodyText";
+import defaultStyles from "../constants/defaultStyles";
 import fish from "../constants/fish";
 
 const StartGameScreen = ({ playerNames }) => {
@@ -39,7 +39,7 @@ const StartGameScreen = ({ playerNames }) => {
 
   return (
     <View style={styles.screen}>
-      <BodyText style={styles.title}>{message}</BodyText>
+      <Text style={defaultStyles.bold}>{message}</Text>
       <Card style={styles.buttonsCard}>
         <View style={styles.buttonContainer}>
           <View style={styles.buttons}>
