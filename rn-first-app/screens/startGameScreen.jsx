@@ -1,22 +1,15 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Button,
-  Image,
-  ScrollView
-} from "react-native";
+import { View, Text, StyleSheet, Button, Image, FlatList } from "react-native";
 
 import Card from "./../components/card";
 import defaultStyles from "../constants/defaultStyles";
 import fish from "../constants/fish";
 
-const renderListItem = (prevCatch, key) => {
+const renderListItem = ({ item }) => {
   return (
-    <View style={styles.listItem} key={key}>
+    <View style={styles.listItem}>
       <Text>
-        Player {prevCatch.turn + 1} caught a {prevCatch.name}
+        Player {item.turn + 1} caught a {item.name}
       </Text>
     </View>
   );
@@ -83,11 +76,13 @@ const StartGameScreen = ({ playerNames }) => {
           </Text>
         </View>
       </Card>
-      <Card style={{ ...styles.infoCard, height: "100%" }}>
-        <ScrollView>
-          {prevCatches.map((pc, index) => renderListItem(pc, index))}
-        </ScrollView>
-      </Card>
+      <View style={styles.listContainer}>
+        <FlatList
+          contentContainerStyle={styles.list}
+          data={prevCatches}
+          renderItem={renderListItem}
+        />
+      </View>
     </View>
   );
 };
@@ -116,11 +111,18 @@ const styles = StyleSheet.create({
     width: "80%",
     padding: 30
   },
+  listContainer: {
+    marginVertical: 10,
+    width: "80%",
+    flexGrow: 1
+  },
+  list: {},
   listItem: {
     marginVertical: 1,
     borderColor: "#ccc",
     borderWidth: 1,
-    padding: 15
+    padding: 15,
+    width: "100%"
   }
 });
 
