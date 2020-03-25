@@ -14,7 +14,7 @@ import fish from "../constants/fish";
 
 const renderListItem = (prevCatch, key) => {
   return (
-    <View key={key}>
+    <View style={styles.listItem} key={key}>
       <Text>
         Player {prevCatch.turn + 1} caught a {prevCatch.name}
       </Text>
@@ -45,7 +45,7 @@ const StartGameScreen = ({ playerNames }) => {
       return;
     }
     setPointsThisRound(pointsThisRound + points);
-    setPrevCatches(prevFishes => [...prevFishes, { ...newFish, turn }]);
+    setPrevCatches(prevFishes => [{ ...newFish, turn }, ...prevFishes]);
   };
 
   const onEndTurn = (addPoints = true) => {
@@ -83,7 +83,7 @@ const StartGameScreen = ({ playerNames }) => {
           </Text>
         </View>
       </Card>
-      <Card style={styles.infoCard}>
+      <Card style={{ ...styles.infoCard, height: "100%" }}>
         <ScrollView>
           {prevCatches.map((pc, index) => renderListItem(pc, index))}
         </ScrollView>
@@ -114,6 +114,12 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     width: "80%",
     padding: 30
+  },
+  listItem: {
+    marginVertical: 1,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    padding: 15
   }
 });
 
