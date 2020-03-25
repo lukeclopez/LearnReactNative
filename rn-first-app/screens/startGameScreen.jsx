@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Button, Image } from "react-native";
 
 import Card from "./../components/card";
 import defaultStyles from "../constants/defaultStyles";
@@ -8,6 +8,7 @@ import fish from "../constants/fish";
 const StartGameScreen = ({ playerNames }) => {
   const [message, setMessage] = useState("Press a button to begin!");
   const [pointsThisRound, setPointsThisRound] = useState(0);
+  const [caughtFish, setCaughtFish] = useState(fish[0]);
   const [score, setScore] = useState([0, 0]);
   const [turn, setTurn] = useState(0);
 
@@ -17,10 +18,11 @@ const StartGameScreen = ({ playerNames }) => {
   };
 
   const onFish = () => {
-    const caughtFish = fish[Math.floor(Math.random() * fish.length)];
-    const { name, points } = caughtFish;
+    const newFish = fish[Math.floor(Math.random() * fish.length)];
+    const { name, points } = newFish;
     setMessage("You caught" + aOrAn(name));
-    if (caughtFish.isBadFish) {
+    setCaughtFish(newFish);
+    if (newFish.isBadFish) {
       onEndTurn(false);
       return;
     }
@@ -39,6 +41,7 @@ const StartGameScreen = ({ playerNames }) => {
 
   return (
     <View style={styles.screen}>
+      <Image source={caughtFish.image} />
       <Text style={defaultStyles.bold}>{message}</Text>
       <Card style={styles.buttonsCard}>
         <View style={styles.buttonContainer}>
