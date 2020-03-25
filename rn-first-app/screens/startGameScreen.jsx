@@ -1,14 +1,32 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Button, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  Image,
+  ScrollView
+} from "react-native";
 
 import Card from "./../components/card";
 import defaultStyles from "../constants/defaultStyles";
 import fish from "../constants/fish";
 
+const renderListItem = (prevCatch, key) => {
+  return (
+    <View key={key}>
+      <Text>
+        Player {prevCatch.turn + 1} caught a {prevCatch.name}
+      </Text>
+    </View>
+  );
+};
+
 const StartGameScreen = ({ playerNames }) => {
   const [message, setMessage] = useState("Press a button to begin!");
   const [pointsThisRound, setPointsThisRound] = useState(0);
   const [caughtFish, setCaughtFish] = useState(fish[0]);
+  const [prevCatches, setPrevCatches] = useState([]);
   const [score, setScore] = useState([0, 0]);
   const [turn, setTurn] = useState(0);
 
@@ -27,6 +45,7 @@ const StartGameScreen = ({ playerNames }) => {
       return;
     }
     setPointsThisRound(pointsThisRound + points);
+    setPrevCatches(prevFishes => [...prevFishes, { ...newFish, turn }]);
   };
 
   const onEndTurn = (addPoints = true) => {
@@ -53,15 +72,22 @@ const StartGameScreen = ({ playerNames }) => {
           </View>
         </View>
       </Card>
-      <View>
-        <Text>{pointsThisRound}</Text>
-        <Text>
-          {playerNames[0]}: {score[0]}
-        </Text>
-        <Text>
-          {playerNames[1]}: {score[1]}
-        </Text>
-      </View>
+      <Card style={styles.infoCard}>
+        <View style={{ alignContent: "center" }}>
+          <Text>Points This Round: {pointsThisRound}</Text>
+          <Text>
+            {playerNames[0]}: {score[0]}
+          </Text>
+          <Text>
+            {playerNames[1]}: {score[1]}
+          </Text>
+        </View>
+      </Card>
+      <Card style={styles.infoCard}>
+        <ScrollView>
+          {prevCatches.map((pc, index) => renderListItem(pc, index))}
+        </ScrollView>
+      </Card>
     </View>
   );
 };
@@ -72,6 +98,7 @@ const styles = StyleSheet.create({
   buttonsCard: {
     justifyContent: "center",
     flexDirection: "row",
+    marginVertical: 10,
     padding: 30,
     width: "80%"
   },
@@ -81,6 +108,12 @@ const styles = StyleSheet.create({
   },
   buttons: {
     marginHorizontal: 20
+  },
+  infoCard: {
+    justifyContent: "center",
+    marginVertical: 10,
+    width: "80%",
+    padding: 30
   }
 });
 
