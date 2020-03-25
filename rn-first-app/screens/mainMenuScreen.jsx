@@ -9,6 +9,7 @@ import {
   Keyboard,
   Alert
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 import StartGameScreen from "./startGameScreen";
 
@@ -40,7 +41,9 @@ const MainMenuScreen = props => {
 
   return (
     <View style={styles.screen}>
-      <MyButton title="Play" onPress={onPlay} />
+      <MyButton onPress={onPlay}>
+        <Ionicons name="ios-play" size={24} />
+      </MyButton>
       <Modal visible={isSetupModalVisible} animationType="slide">
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <View style={styles.setupMenu}>
