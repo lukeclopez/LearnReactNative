@@ -34,5 +34,11 @@ export default [
     points: -1,
     isBadFish: true,
     image: require("../assets/images/fish/tnt.png")
+  },
+  {
+    name: "Blobphin",
+    points: 20,
+    isBadFish: false,
+    image: require("../assets/images/fish/blobphin.png")
   }
 ];
