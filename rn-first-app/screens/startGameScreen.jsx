@@ -79,6 +79,7 @@ const StartGameScreen = ({ playerNames }) => {
       <View style={styles.listContainer}>
         <FlatList
           contentContainerStyle={styles.list}
+          keyExtractor={(e, index) => e.name + index}
           data={prevCatches}
           renderItem={renderListItem}
         />
