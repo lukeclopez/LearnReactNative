@@ -42,9 +42,9 @@ const Categories = (props) => {
 Categories.navigationOptions = {
   headerTitle: "Meal Categories",
   headerStyle: {
-    backgroundColor: colors.primaryColor,
+    backgroundColor: "",
   },
-  headerTintColor: "white",
+  headerTintColor: colors.primaryColor,
 };
 
 export default Categories;

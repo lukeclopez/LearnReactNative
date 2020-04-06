@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, View, Text, Button } from "react-native";
 
+import colors from "../constants/colors";
+
 const CategoryMeals = (props) => {
   return (
     <View style={styles.screen}>
@@ -13,6 +15,14 @@ const CategoryMeals = (props) => {
       />
     </View>
   );
+};
+
+CategoryMeals.navigationOptions = {
+  headerTitle: "Category Meals",
+  headerStyle: {
+    backgroundColor: "",
+  },
+  headerTintColor: colors.primaryColor,
 };
 
 export default CategoryMeals;
