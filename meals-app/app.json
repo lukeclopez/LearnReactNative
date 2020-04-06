@@ -1,9 +1,7 @@
 {
   "expo": {
-    "name": "rn-meals-app",
-    "slug": "rn-meals-app",
-    "privacy": "public",
-    "sdkVersion": "36.0.0",
+    "name": "meals-app",
+    "slug": "meals-app",
     "platforms": [
       "ios",
       "android",

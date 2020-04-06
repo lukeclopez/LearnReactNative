@@ -16,7 +16,7 @@ const Categories = (props) => {
     return (
       <TouchableOpacity
         style={styles.gridItem}
-        onPress={props.navigation.navigate("CategoryMeals")}
+        onPress={() => props.navigation.navigate("CategoryMeals")}
       >
         <View>
           <Text>{itemData.item.title}</Text>
@@ -50,5 +50,5 @@ Categories.navigationOptions = {
 export default Categories;
 
 const styles = StyleSheet.create({
-  gridItem: { flex: 1, margin: 15, heigh: 150 },
+  gridItem: { flex: 1, margin: 15, height: 150 },
 });
