@@ -9,7 +9,6 @@ import {
 } from "react-native";
 
 import { CATEGORIES } from "./../data/dummyData";
-import colors from "../constants/colors";
 
 const Categories = (props) => {
   const renderGridItem = (itemData) => {
@@ -45,10 +44,6 @@ const Categories = (props) => {
 
 Categories.navigationOptions = {
   headerTitle: "Meal Categories",
-  headerStyle: {
-    backgroundColor: "",
-  },
-  headerTintColor: colors.primaryColor,
 };
 
 export default Categories;
