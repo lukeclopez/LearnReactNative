@@ -22,12 +22,17 @@ const CategoryMeals = (props) => {
   );
 };
 
-CategoryMeals.navigationOptions = {
-  headerTitle: "Category Meals",
-  headerStyle: {
-    backgroundColor: "",
-  },
-  headerTintColor: colors.primaryColor,
+CategoryMeals.navigationOptions = (navigationData) => {
+  const catId = navigationData.navigation.getParam("categoryId");
+  const selectedCategory = CATEGORIES.find((cat) => cat.id == catId);
+
+  return {
+    headerTitle: selectedCategory.title,
+    headerStyle: {
+      backgroundColor: "",
+    },
+    headerTintColor: colors.primaryColor,
+  };
 };
 
 export default CategoryMeals;
