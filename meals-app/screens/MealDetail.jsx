@@ -38,7 +38,7 @@ MealDetail.navigationOptions = (navigationData) => {
   return {
     headerTitle: meal.title,
     headerRight: () => (
-      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+      <HeaderButtons HeaderButtonComponent={MyHeaderButton}>
         <Item
           title="Favorite"
           iconName="ios-star"
