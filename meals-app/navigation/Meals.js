@@ -1,6 +1,8 @@
+import React from "react";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
+import { Ionicons } from "@expo/vector-icons";
 
 import Categories from "./../screens/Categories";
 import CategoryMeals from "./../screens/CategoryMeals";
@@ -31,9 +33,39 @@ const MealsNavigator = createStackNavigator(
   }
 );
 
-const MealsFavTabNavigator = createBottomTabNavigator({
-  Meals: MealsNavigator,
-  Favorites,
-});
+const MealsFavTabNavigator = createBottomTabNavigator(
+  {
+    Meals: {
+      screen: MealsNavigator,
+      navigationOptions: {
+        tabBarIcon: (tabInfo) => {
+          return (
+            <Ionicons
+              name="ios-restaurant"
+              size={25}
+              color={tabInfo.tintColor}
+            />
+          );
+        },
+        tabBarLabel: "All Meals",
+      },
+    },
+    Favorites: {
+      screen: Favorites,
+      navigationOptions: {
+        tabBarIcon: (tabInfo) => {
+          return (
+            <Ionicons name="ios-star" size={25} color={tabInfo.tintColor} />
+          );
+        },
+      },
+    },
+  },
+  {
+    tabBarOptions: {
+      activeTintColor: colors.accentColor,
+    },
+  }
+);
 
 export default createAppContainer(MealsFavTabNavigator);
