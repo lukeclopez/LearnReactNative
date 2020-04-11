@@ -10,7 +10,16 @@ const CategoryMeals = (props) => {
   const displayedMeals = MEALS.filter((e) => e.categoryIds.indexOf(catId) >= 0);
 
   const renderMealItem = (itemData) => {
-    return <MealItem data={itemData.item} onPress={() => {}} />;
+    return (
+      <MealItem
+        data={itemData.item}
+        onPress={() =>
+          props.navigation.navigate("MealDetail", {
+            mealId: itemData.item.id,
+          })
+        }
+      />
+    );
   };
 
   return (
